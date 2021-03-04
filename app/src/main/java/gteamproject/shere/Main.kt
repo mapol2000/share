@@ -4,54 +4,42 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import gteamproject.shere.ui.dashboard.FindPlaceFragment
-import gteamproject.shere.ui.home.HomeFragment
-import gteamproject.shere.ui.notifications.NotificationsFragment
+import gteamproject.shere.fragments.HomeFragment
+import gteamproject.shere.fragments.MagazineFragment
+import gteamproject.shere.fragments.MypageFragment
+import gteamproject.shere.fragments.PlaceFragment
 
 class Main : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val homeFragment = HomeFragment()
-        val dashboardFragment = FindPlaceFragment()
-        val notificationsFragment = NotificationsFragment()
+        val placeFragment = PlaceFragment()
+        val magazineFragment = MagazineFragment()
+        val mypageFragment = MypageFragment()
 
         makeCurrentFragment(homeFragment)
 
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-        val navController = findNavController(R.id.nav_host_fragment)
+        val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
         navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.navigation_home -> makeCurrentFragment(homeFragment)
-                R.id.navigation_dashboard -> makeCurrentFragment(dashboardFragment)
-                R.id.navigation_notifications -> makeCurrentFragment(notificationsFragment)
+                R.id.ic_home -> makeCurrentFragment(homeFragment)
+                R.id.ic_place -> makeCurrentFragment(placeFragment)
+                R.id.ic_magazine -> makeCurrentFragment(magazineFragment)
+                R.id.ic_mypage -> makeCurrentFragment(mypageFragment)
             }
             true
         }
 
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
     }
-
 
     private fun makeCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.nav_view, fragment)
+            replace(R.id.fl_wrapper, fragment)
             commit()
         }
-
 
 }
