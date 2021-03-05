@@ -65,6 +65,18 @@
                 android:textColor="@color/black"
                 android:textSize="30sp"
                 android:textStyle="bold" />
+            
+            <com.synnapps.carouselview.CarouselView
+                android:id="@+id/firstSlide"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:fillColor="#FFFFFF"
+                app:pageColor="#000000"
+                app:radius="6dp"
+                app:slideInterval="4000"
+                app:strokeColor="#FF777777"
+                app:strokeWidth="1dp"
+                app:autoPlay="true"/>
         </LinearLayout>
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
